@@ -17,7 +17,7 @@ do {
         #Gets valid year from user
         [bool]$validYear = $true
         $newYear = Read-Host "Please enter the new year (eg. 2020)"
-        $existingYears = Get-ChildItem -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive" -Name
+        $existingYears = Get-ChildItem -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive" -Name
         do {
             if ($newYear -match "20\d{2}" -and !($existingYears.Contains($newYear))) {
                 $validYear = $false
@@ -29,7 +29,7 @@ do {
         } while ($validYear)
 
         #Creates the new year folder
-        New-Item -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive" -Name $newYear -ItemType "directory" | Out-Null
+        New-Item -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive" -Name $newYear -ItemType "directory" | Out-Null
 
         #Gets the number of jobs to create inside new year folder
         [bool]$validNumberOfJobs = $true
@@ -48,8 +48,8 @@ do {
 
         #Creates jobs in new year folder
         for ($i = 0; $i -lt $numOfJobs; $i++) {
-            New-Item -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$newYear" -Name $newJob -ItemType "directory" | Out-Null
-            Copy-Item -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\JOBNUM\*" -Destination "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$newYear\$newJob" -Recurse
+            New-Item -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$newYear" -Name $newJob -ItemType "directory" | Out-Null
+            Copy-Item -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\JOBNUM\*" -Destination "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$newYear\$newJob" -Recurse
             $newJob++
         }
         
@@ -58,7 +58,7 @@ do {
         #Gets user input for the existing year to add new projects
         [bool]$existingYear = $true
         $year = Read-Host "Please enter the year to add new projects to"
-        $allExistingYear = Get-ChildItem -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\" -Name
+        $allExistingYear = Get-ChildItem -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\" -Name
         do {
             if ($allExistingYear.Contains($year)) {
                 $existingYear = $false
@@ -69,7 +69,7 @@ do {
                     if ($jobs.GetType() -eq [int] -and $jobs -gt 0 -and $jobs -lt 201) {
                         $validJobNum = $false
                        
-                        $existingJobs = Get-ChildItem -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$year" -Name
+                        $existingJobs = Get-ChildItem -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$year" -Name
                         $newJobNumber = 0
                         if ($existingJobs.Length -eq 0) {
                             $newJobNumber = [int]($Year.Substring(0, 1) + $Year.Substring(2, 2) + "001")       
@@ -80,8 +80,8 @@ do {
 
                         #Creates jobs in new year folder
                         for ($i = 0; $i -lt $jobs; $i++) {
-                            New-Item -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$year" -Name $newJobNumber -ItemType "directory" | Out-Null
-                            Copy-Item -Path "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\JOBNUM\*" -Destination "C:\Users\cwei\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$Year\$newJobNumber" -Recurse
+                            New-Item -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$year" -Name $newJobNumber -ItemType "directory" | Out-Null
+                            Copy-Item -Path "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\JOBNUM\*" -Destination "C:\Users\lwung\Desktop\CW_GS_2020\AddingNewProjectsToFDrive\SampleFDrive\$Year\$newJobNumber" -Recurse
                             $newJobNumber++
                         }
                     }
